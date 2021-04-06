@@ -28,9 +28,6 @@ imports = {
 }
 
 
-__all__ = []
-
-
 def do_imports(definitions, ignore_import_error=False):
     for name, mapping in definitions.items():
         try:
@@ -44,3 +41,13 @@ def do_imports(definitions, ignore_import_error=False):
 
 do_imports(imports['mandatory'], ignore_import_error=False)
 do_imports(imports['optional'], ignore_import_error=True)
+
+
+# Setting __all__ explicitly is nasty but required as auto-completion will otherwise not recognize imports.
+# In case of PyCharm, might be related to https://youtrack.jetbrains.com/issue/PY-8307.
+__all__ = [
+    'torch', 'nn', 'F', 'optim',  # torch
+    'tv', 'transforms',  # torchvision
+    'tt',  # torchtext
+    'np', 'pd'  # others
+]
