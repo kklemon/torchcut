@@ -33,7 +33,6 @@ def do_imports(definitions, ignore_import_error=False):
         try:
             for package, import_as in mapping.items():
                 globals()[import_as] = importlib.import_module(package)
-                __all__.append(import_as)
         except ImportError:
             if ignore_import_error:
                 warnings.warn('{} is not installed and won\'t be available.'.format(name))
